@@ -106,13 +106,49 @@
 }
 </style>
 
-
 <script>
+import { ref } from 'vue'; // we use "ref" if we want to create a variable whose value will be changed in the template
 export default {
   setup() {
+    // data
 
+    let question_counter = ref(0)
+
+
+    const currentQuestion = ref({
+      question: '',
+      answer: 1,
+      choices: []
+    })
+
+    const dummyQuestions = [
+      {
+        question: 'What is the most popular city in America?',
+        answer: 1,
+        choices: ['New York', 'Los Angeles', 'Chicago', 'Houston']
+      },
+      {
+        question: 'What is the most popular city in Spain?',
+        answer: 2,
+        choices: ['Madrid', 'Barcelona', 'Valencia', 'Sevilla']
+      },
+      {
+        question: 'What is the most popular city in France?',
+        answer: 1,
+        choices: ['Paris', 'Marseille', 'Lyon', 'Toulouse']
+      }
+    ]
+    
+    const onQuizStart = () => {
+      currentQuestion.value = dummyQuestions[question_counter.value] // doing currentQuestion.value helps us to be able to access the value of the currentQuestion ref
+      question_counter.value = 0
+
+      // currentQuestion.value = dummyQuestions[question_counter.value]
+      // question_counter.value = 0
+    }
+
+
+    return { currentQuestion, dummyQuestions, question_counter }
   }
 }
 </script>
-
-
